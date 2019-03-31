@@ -1,3 +1,5 @@
+DEBUG=
+
 OBJECTS=
 TARGET=toyos.elf
 
@@ -8,12 +10,15 @@ all: OBJECTS += $(wildcard asm/*.o)
 all: OBJECTS += $(wildcard kernel/*.o)
 all: link
 
+debug: DEBUG += "debug"
+debug: all
+
 link: $(OBJECTS)
 	$(LD) $(LDFLAGS) $(OBJECTS) -o $(TARGET)
 
 subdirs:
-	$(MAKE) --directory=asm
-	$(MAKE) --directory=kernel
+	$(MAKE) --directory=asm $(DEBUG)
+	$(MAKE) --directory=kernel $(DEBUG)
 
 clean:
 	$(MAKE) --directory=asm clean

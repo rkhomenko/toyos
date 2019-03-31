@@ -1,9 +1,12 @@
 SOURCES=main.c
 OBJECTS=$(SOURCES:.c=.o)
 
-CFLAGS=-m32 -Wall -Wextra -pedantic -std=gnu99 -ffreestanding -O2
+CFLAGS=-m32 -Wall -Wextra -pedantic -std=gnu99 -ffreestanding -O2 -I../include
 
-kernel: $(OBJECTS)
+all: $(OBJECTS)
+
+debug: CFLAGS += -g
+debug: all
 
 clean:
 	$(RM) $(OBJECTS)

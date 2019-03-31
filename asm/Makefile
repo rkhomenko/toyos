@@ -1,9 +1,13 @@
 SOURCES=boot.S
 OBJECTS=$(SOURCES:.S=.o)
 
-ASFLAGS=-m32
+AS=gcc
+ASFLAGS=-m32 -I../include
 
-asm: $(OBJECTS)
+all: $(OBJECTS)
+
+debug: ASFLAGS += -g
+debug: all
 
 clean:
 	$(RM) $(OBJECTS)
