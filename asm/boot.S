@@ -10,6 +10,9 @@ multiboot2_header:
 .long multiboot2_header_end - multiboot2_header
 .long -(MULTIBOOT2_HEADER_MAGIC + MULTIBOOT2_ARCHITECTURE_I386 + (multiboot2_header_end - multiboot2_header))
 multiboot2_header_end:
+.short MULTIBOOT2_LAST_TAG_TYPE
+.short MULTIBOOT2_LAST_TAG_FLAGS
+.short MULTIBOOT2_LAST_TAG_SIZE
 
 .section .bss
 .align 16
@@ -31,7 +34,6 @@ _start:
     
     call main 
 loop:   hlt
-    movl $0x07690748,0xb8000
     jmp     loop
 
 .size _start, . - _start
