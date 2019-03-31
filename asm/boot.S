@@ -31,6 +31,7 @@ _start:
     
     call main 
 loop:   hlt
+    movl $0x07690748,0xb8000
     jmp     loop
 
 .size _start, . - _start
