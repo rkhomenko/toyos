@@ -32,7 +32,7 @@ _start:
     pushl   %ebx
     pushl   %eax
     
-    call main 
+    call main
 loop:   hlt
     jmp     loop
 
